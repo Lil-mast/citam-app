@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 0 0% 100%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 100% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 54%;
+    --accent: 0 0% 16%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 0 100% 40%;
+    --radius: 0.5rem;
+
+    --citam-red: #CC0000;
+    --citam-red-light: #E60000;
+    --deep-crimson: #990000;
+    --matte-black: #0A0A0A;
+    --deep-charcoal: #121212;
+    --medium-charcoal: #1A1A1A;
+    --dark-grey: #2A2A2A;
+    --pure-white: #FFFFFF;
+    --silver-grey: #C8C8C8;
+    --light-grey: #8A8A8A;
+    --prayer-blue: #3B82F6;
+    --success-green: #22C55E;
+    --leaderboard-gold: #FFD700;
+    --leaderboard-silver: #C0C0C0;
+    --leaderboard-bronze: #CD7F32;
+
+    --glass-white: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(255, 255, 255, 0.06);
+    --glass-hover: rgba(255, 255, 255, 0.08);
+
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--matte-black);
+    color: var(--pure-white);
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    line-height: 1.05;
+    color: var(--pure-white);
+    letter-spacing: -0.03em;
+  }
+
+  p {
+    color: var(--silver-grey);
+    line-height: 1.6;
+  }
+
+  ::selection {
+    background-color: rgba(204, 0, 0, 0.3);
+    color: var(--pure-white);
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: var(--glass-white);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+
+  .glass-card:hover {
+    background: var(--glass-hover);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  .subsection-label {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--light-grey);
+  }
+
+  .section-title {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--pure-white);
+  }
+
+  .card-title {
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--pure-white);
+  }
+
+  .body-large {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--silver-grey);
+  }
+
+  .caption-text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--light-grey);
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .text-shadow-hero {
+    text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Pulse Glow Animation for Primary CTAs */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(204, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px 8px rgba(204, 0, 0, 0.15);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Pulse dot animation */
+@keyframes pulseDot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.3;
+  }
+}
+
+.animate-pulse-dot {
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+/* Mobile: disable glassmorphism backdrop-filter */
+@media (max-width: 768px) {
+  .glass-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: var(--medium-charcoal);
+  }
+}
